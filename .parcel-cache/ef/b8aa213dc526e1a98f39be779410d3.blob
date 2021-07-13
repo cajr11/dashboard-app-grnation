@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=viewport-width, initial-scale=1.0">
+    <link href="/index.HASH_REF_1f4ae320034955e4a6b30ca3928ba5ce.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.HASH_REF_866d94b1085c9d0786e972b680934ffe.png">
+    <title>Dashboard</title>
+  </head>
+  <body class="bg-dark-grey text-white flex">
+    <!-- Navigation -->
+    <nav class="side__nav">
+      <ul class="side__nav--list">
+        <li class="side__nav--item">
+          <a>
+            <i class="bi-alarm"></i>
+          </a>
+        </li>
+        <li class="side__nav--item">
+          <a> </a>
+        </li>
+        <li class="side__nav--item">
+          <a> </a>
+        </li>
+        <li class="side__nav--item">
+          <a> </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Modules -->
+    <div class="module__dashboard bg-main-black"></div>
+    <div class="module__users"></div>
+    <div class="module__products"></div>
+    <div class="module__orders"></div>
+  </body>
+</html>
+<script src="/index.HASH_REF_1cf92b8ac789bf0c8bd4b6d53ebff041.js"></script>

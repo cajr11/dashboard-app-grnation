@@ -1,0 +1,26 @@
+{
+  "name": "dashboard-app-grnation",
+  "version": "1.0.0",
+  "description": "Dashboard app",
+  "main": "index.html",
+  "dependencies": {
+    "bootstrap-icons": "^1.5.0",
+    "chart.js": "^3.4.1",
+    "parcel": "^2.0.0-beta.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cajr11/dashboard-app-grnation.git"
+  },
+  "author": "Christopher Aondo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cajr11/dashboard-app-grnation/issues"
+  },
+  "homepage": "https://github.com/cajr11/dashboard-app-grnation#readme"
+}
