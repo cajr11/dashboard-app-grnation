@@ -61,10 +61,12 @@ body {
 }
 
 .side__nav--item a {
+  color: inherit;
   text-decoration: none;
 }
 
 /*---------Dashboard---------------*/
+
 .section__heading {
   margin-bottom: 0;
 }
@@ -81,6 +83,11 @@ body {
   font-weight: 200;
   text-align: justify;
   padding-left: 1rem;
+}
+
+.section__data {
+  display: flex;
+  justify-content: space-between;
 }
 
 .info__container {
@@ -187,13 +194,121 @@ body {
   grid-template-columns: 1fr 1fr 2fr;
 }
 
+/*------------Charts--------------*/
+.charts__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+.chart__container {
+  height: 17rem;
+  width: 20rem;
+}
+
+.other__container {
+  height: 17rem;
+  width: 20rem;
+}
+
 /*------------Media Queries------------- */
+@media (max-width: 1107px) {
+  .module__dashboard {
+    left: 30vw;
+  }
+
+  .section__data {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .users__wrapper {
+    width: 55vw;
+  }
+}
+
 @media (max-width: 1040px) {
+  .side__nav {
+    width: 15vw;
+  }
+
   .side__nav--item {
-    width: 60%;
+    width: 70%;
     flex-direction: column-reverse;
   }
   .side__nav--item span {
     visibility: hidden;
+  }
+
+  .module__dashboard {
+    left: 20vw;
+  }
+
+  .users__wrapper {
+    height: 35vh;
+    width: 52vw;
+  }
+  .products__wrapper {
+    width: 26vw;
+  }
+
+  .user__info--list,
+  .user__headings--list,
+  .order__info--list,
+  .orders__headings--list,
+  .products__headings--list,
+  .product__info--list {
+    font-size: 0.6rem;
+  }
+
+  .products__headings--list,
+  .product__info--list {
+    grid-template-columns: 0.8fr 0.8fr 1.2fr 1.2fr;
+  }
+
+  .products__headings--list:last-child,
+  .product__info--list:last-child {
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .charts__data {
+    margin: 1rem auto 1rem auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .module__dashboard {
+    left: 15vw;
+  }
+
+  .users__wrapper {
+    width: 60vw;
+  }
+
+  .container__products--orders {
+    flex-direction: column;
+  }
+  .products__wrapper {
+    width: 50vw;
+  }
+
+  .orders__wrapper {
+    width: 50vw;
+  }
+
+  .user__info--list,
+  .user__headings--list,
+  .order__info--list,
+  .orders__headings--list,
+  .products__headings--list,
+  .product__info--list {
+    font-size: 0.45rem;
+  }
+
+  .charts__data {
+    margin: 1rem auto 1rem auto;
   }
 }

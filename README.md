@@ -10,7 +10,7 @@
         1. latest 5 Users created,
         2. latest 5 products created,
         3. latest 5 orders created,
-        4. Chart with the 5 most sale products,
+        4. Chart with the 5 most sold products,
         5. Chart with the 12 months/num or orders of that month
 
 For Users, Products and Orders, show tables with pagination with 10 items per page as well as arrows/numbers to navigate.
