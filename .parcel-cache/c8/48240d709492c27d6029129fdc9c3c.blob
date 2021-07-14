@@ -1,7 +1,0 @@
-body {
-  font-family: "Roboto", sans-serif;
-}
-
-.side__nav--item a {
-  text-decoration: none;
-}

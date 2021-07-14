@@ -1,9 +1,0 @@
-body {
-  font-family: "Roboto", sans-serif;
-}
-
-.side__nav--item a {
-  text-decoration: none;
-}
-
-/*# sourceMappingURL=index.HASH_REF_1f4ae320034955e4a6b30ca3928ba5ce.css.map */

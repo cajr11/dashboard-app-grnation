@@ -4,13 +4,13 @@
 
 ### Given this data sample, create a web application that:
 
-    Reads json files or consumes API to retrieve the information.
-    Has 4 main modules: Dashboard, Users, Products and Orders.
-    Dashboard should show 5 tiles with:
-        1. latest 5 Users created,
-        2. latest 5 products created,
-        3. latest 5 orders created,
-        4. Chart with the 5 most sold products,
+    Reads json files or consumes API to retrieve the information. - done
+    Has 4 main modules: Dashboard, Users, Products and Orders. - done
+    Dashboard should show 5 tiles with: - done
+        1. latest 5 Users created, - done
+        2. latest 5 products created, - done
+        3. latest 5 orders created, - done
+        4. Chart with the 5 most sale products,
         5. Chart with the 12 months/num or orders of that month
 
 For Users, Products and Orders, show tables with pagination with 10 items per page as well as arrows/numbers to navigate.

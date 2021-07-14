@@ -30,6 +30,7 @@ body {
   height: 100vh;
   width: 20vw;
   overflow: hidden;
+  z-index: 100;
 }
 
 .side__nav--list {
@@ -49,6 +50,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 4.5em;
+  z-index: 100;
 }
 
 .side__nav--item:hover {
@@ -63,6 +65,14 @@ body {
 .side__nav--item a {
   color: inherit;
   text-decoration: none;
+  position: relative;
+  pointer-events: none;
+}
+
+.side__nav--item a > svg,
+.side__nav--item > span,
+.side__nav--item a {
+  pointer-events: none;
 }
 
 /*---------Dashboard---------------*/
@@ -295,6 +305,10 @@ body {
   background-color: var(--hover-wrapper);
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 /*------------Media Queries------------- */
 @media (max-width: 1107px) {
   .module__dashboard {
@@ -375,8 +389,14 @@ body {
 }
 
 @media (max-width: 680px) {
+  .side__nav,
+  .side__nav--list,
+  .side__nav--item {
+    background-color: var(--main);
+  }
   .module__dashboard {
     left: 15vw;
+    overflow-x: hidden;
   }
 
   .users__wrapper {
@@ -425,6 +445,6 @@ body {
   .module__products--wrapper {
     height: 50vh;
     width: 50vw;
-    margin-left: 0;
+    margin-left: 3rem;
   }
 }

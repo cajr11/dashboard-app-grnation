@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=viewport-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/src/css/styles.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="/src/img/favicon.png" />
     <link
@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="/src/css/styles.css"/>
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+    <script type="module" src="/src/js/controller.js"></script>
     
   </head>
   <body class="bg-dark-grey text-white flex">
     <!-- Navigation -->
     <nav class="side__nav">
       <ul class="side__nav--list">
-        <li class="side__nav--item active">
-          <a href="#dashboard">
+        <li class="side__nav--item active" data-link="#dashboard">
+          <a href="#"> 
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -40,8 +41,8 @@
           </a>
           <span>Dashboard</span>
         </li>
-        <li class="side__nav--item">
-          <a href="#users">
+        <li class="side__nav--item" data-link="#users">
+          <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -57,8 +58,8 @@
           </a>
           <span>Users</span>
         </li>
-        <li class="side__nav--item">
-          <a>
+        <li class="side__nav--item" data-link="#products">
+          <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -74,7 +75,7 @@
           </a>
           <span>Products</span>
         </li>
-        <li class="side__nav--item ">
+        <li class="side__nav--item" data-link="#orders">
           <a>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -95,14 +96,14 @@
       </ul>
     </nav>
 
-<!--     
-            Dashboard Module
-        <div class="module__dashboard" id="dashboard">
+    
+            <!-- Dashboard Module -->
+        <div class="module__dashboard section__container" id="dashboard">
             <h1 class="section__heading">Dashboard</h1>
             <main class="section__data">
                 <div class="info__container">
                     <div class="tables__wrapper">
-                        Users 
+                        <!-- Users  -->
                         <div class="users__top">
                             <h3 class="module__heading">Latest Users</h3>
                             <div class="users__wrapper">
@@ -116,7 +117,7 @@
                                         <li data-created="">Date Created</li>
                                     </ul>
                                 </div>
-                                <div class="user__info">
+                                <!-- <div class="user__info">
                                     <ul class="user__info--list">
                                         <li>1</li>
                                         <li>Christopher</li>
@@ -125,52 +126,12 @@
                                         <li>glorytoGodamen@yahoo.co.uk</li>
                                         <li>20/09/2022</li>
                                     </ul>
-                                </div>
-                                <div class="user__info">
-                                    <ul class="user__info--list">
-                                        <li>2</li>
-                                        <li>Christopher</li>
-                                        <li>Aondongu</li>
-                                        <li>CA</li>
-                                        <li>glorytoGodamen@gmail.com</li>
-                                        <li>20/09/2022</li>
-                                    </ul>
-                                </div>
-                                <div class="user__info">
-                                    <ul class="user__info--list">
-                                        <li>3</li>
-                                        <li>Christopher</li>
-                                        <li>Aondongu</li>
-                                        <li>CA</li>
-                                        <li>toGodamen@yahoo.co.uk</li>
-                                        <li>20/09/2022</li>
-                                    </ul>
-                                </div>
-                                <div class="user__info">
-                                    <ul class="user__info--list">
-                                        <li>4</li>
-                                        <li>Christopher</li>
-                                        <li>Aondongu</li>
-                                        <li>CA</li>
-                                        <li>gloryamen@yahoo.co.uk</li>
-                                        <li>20/09/2022</li>
-                                    </ul>
-                                </div>
-                                <div class="user__info">
-                                    <ul class="user__info--list">
-                                        <li>5</li>
-                                        <li>Christopher</li>
-                                        <li>Aondongu</li>
-                                        <li>CA</li>
-                                        <li>Godamen@yahoo.co.uk</li>
-                                        <li>20/09/2022</li>
-                                    </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
             
                         <div class="container__products--orders">
-                             products 
+                             <!-- products  -->
                         <div class="products__top">
                             <h3 class="module__heading">Latest Products</h3>
                             <div class="products__wrapper">
@@ -182,95 +143,35 @@
                                         <li>Date Created</li>
                                     </ul>
                                 </div>
-                                <div class="product__info">
+                                <!-- <div class="product__info">
                                     <ul class="product__info--list">
                                         <li>1</li>
                                         <li>Item 1</li>
                                         <li>$450.33</li>
                                         <li>22/04/2020</li>
                                     </ul>
-                                </div>
-                                <div class="product__info">
-                                    <ul class="product__info--list">
-                                        <li>1</li>
-                                        <li>Item 1</li>
-                                        <li>$450.33</li>
-                                        <li>22/04/2020</li>
-                                    </ul>
-                                </div>
-                                <div class="product__info">
-                                    <ul class="product__info--list">
-                                        <li>1</li>
-                                        <li>Item 1</li>
-                                        <li>$450.33</li>
-                                        <li>22/04/2020</li>
-                                    </ul>
-                                </div>
-                                <div class="product__info">
-                                    <ul class="product__info--list">
-                                        <li>1</li>
-                                        <li>Item 1</li>
-                                        <li>$450.33</li>
-                                        <li>22/04/2020</li>
-                                    </ul>
-                                </div>
-                                <div class="product__info">
-                                    <ul class="product__info--list">
-                                        <li>1</li>
-                                        <li>Item 1</li>
-                                        <li>$450.33</li>
-                                        <li>22/04/2020</li>
-                                    </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
             
-                             orders 
+                             <!-- orders  -->
                             <div class="orders__top">
                                 <h3 class="module__heading">Latest Orders</h3>
                                 <div class="orders__wrapper">
                                     <div class="orders__headings">
                                         <ul class="orders__headings--list">
                                             <li>ID</li>
-                                            <li>User_ID</li>
+                                            <li>User ID</li>
                                             <li>Date Created</li>
                                         </ul>
                                     </div>
-                                    <div class="order__info">
+                                    <!-- <div class="order__info">
                                         <ul class="order__info--list">
                                             <li>1</li>
                                             <li>12</li>
                                             <li>22/04/2020</li>
                                         </ul>
-                                    </div>
-                                    <div class="order__info">
-                                        <ul class="order__info--list">
-                                            <li>1</li>
-                                            <li>13</li>
-                                            <li>22/04/2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="order__info">
-                                        <ul class="order__info--list">
-                                            <li>1</li>
-                                            <li>15</li>
-                                            <li>22/04/2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="order__info">
-                                        <ul class="order__info--list">
-                                            <li>1</li>
-                                            <li>15</li>
-                                            <li>22/04/2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="order__info">
-                                        <ul class="order__info--list">
-                                            <li>1</li>
-                                            <li>15</li>
-                                            <li>22/04/2020</li>
-                                        </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -284,99 +185,10 @@
                         <canvas id="chartNew" height="230"></canvas>
                     </div>
                 </div>
-                <script>
-                    var ctx = document.getElementById('myChart');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
-                            datasets: [{
-                                label: '5 Most Sold Products',
-                                data: [12, 19, 3, 5, 7],
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            },
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Top 5 Most Sold Products',
-                                    color: '#f3f3f3',
-                                    font: {
-                                        weight: "200",
-                                        family: "Roboto"
-                                    }
-                                },
-                                legend: {
-                                    display: false,
-                                }
-                            }
-                        }
-                    });
-        
-                    const ltx = document.getElementById('chartNew');
-                    const othrChart = new Chart(ltx, {
-                                type: 'line',
-                                data: {
-                                labels: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'],
-                                datasets: [{
-                                    label: 'My First Dataset',
-                                    data: [65, 59, 80, 81, 56, 55, 40, 32, 90, 60, 22, 95],
-                                    fill: false,
-                                    borderColor: 'rgb(75, 192, 192)',
-                                    tension: 0.1
-                                    }],
-                                },
-                                options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            },
-                            responsive: true,
-                            maintainAspectRatio: true,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Monthly Sales',
-                                    color: '#f3f3f3',
-                                    font: {
-                                        weight: "200",
-                                        family: "Roboto"
-                                    }
-                                },
-                                legend: {
-                                    display: false,
-                                }
-                            }
-                        }
-                            });
-                    </script>
             </main>
-        </div>-->
+        </div>
 
-        <!-- <div class="module__users" id="users">
+        <div class="module__users hidden section__container" id="users">
             <h1 class="section__heading">Users</h1>
             <div class="module__users--container">
                 <div class="module__users--wrapper">
@@ -400,103 +212,13 @@
                             <li>20/09/2022</li>
                         </ul>
                     </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
-        </div>  -->
+        </div> 
 
         
     
-    <div class="module__products" id="products">
+    <div class="module__products hidden section__container" id="products">
             <h1 class="section__heading">Products</h1>
             <div class="module__products-container">
                 <div class="module__products--wrapper">
@@ -506,78 +228,6 @@
                             <li data-lastName="">Name</li>
                             <li data-initials="">Price</li>
                             <li data-created="">Date Created</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
-                    </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
                         </ul>
                     </div>
                     <div class="product__list">
