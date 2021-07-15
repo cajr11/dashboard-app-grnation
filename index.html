@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/src/css/styles.css"/>
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
-    <script type="module" src="/src/js/controller.js"></script>
+    <script type="module" src="/src/js/app.js"></script>
     
   </head>
   <body class="bg-dark-grey text-white flex">
@@ -117,16 +117,6 @@
                                         <li data-created="">Date Created</li>
                                     </ul>
                                 </div>
-                                <!-- <div class="user__info">
-                                    <ul class="user__info--list">
-                                        <li>1</li>
-                                        <li>Christopher</li>
-                                        <li>Aondongu</li>
-                                        <li>CA</li>
-                                        <li>glorytoGodamen@yahoo.co.uk</li>
-                                        <li>20/09/2022</li>
-                                    </ul>
-                                </div> -->
                             </div>
                         </div>
             
@@ -143,14 +133,6 @@
                                         <li>Date Created</li>
                                     </ul>
                                 </div>
-                                <!-- <div class="product__info">
-                                    <ul class="product__info--list">
-                                        <li>1</li>
-                                        <li>Item 1</li>
-                                        <li>$450.33</li>
-                                        <li>22/04/2020</li>
-                                    </ul>
-                                </div> -->
                             </div>
                         </div>
             
@@ -165,29 +147,23 @@
                                             <li>Date Created</li>
                                         </ul>
                                     </div>
-                                    <!-- <div class="order__info">
-                                        <ul class="order__info--list">
-                                            <li>1</li>
-                                            <li>12</li>
-                                            <li>22/04/2020</li>
-                                        </ul>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Charts -->
                 <div class="charts__data">
-                    <div class="chart__container">
-                        <canvas id="myChart"></canvas>
+                    <div class="top__sales--container">
+                        <canvas id="topSales"></canvas>
                     </div>
-                    <div class="other__container">
+                    <div class="monthly__data--container">
                         <canvas id="chartNew" height="230"></canvas>
                     </div>
                 </div>
             </main>
         </div>
-
+              <!-- Users Module -->
         <div class="module__users hidden section__container" id="users">
             <h1 class="section__heading">Users</h1>
             <div class="module__users--container">
@@ -202,25 +178,20 @@
                             <li data-created="">Date Created</li>
                         </ul>
                     </div>
-                    <div class="user__list">
-                        <ul class="user__list--content">
-                            <li>1</li>
-                            <li>Christopher</li>
-                            <li>Aondongu</li>
-                            <li>CA</li>
-                            <li>glorytoGodamen@yahoo.co.uk</li>
-                            <li>20/09/2022</li>
-                        </ul>
+                    <div class="user__list--container">
                     </div>
+                </div>
+
+                <div class="pagination__users">
                 </div>
             </div>
         </div> 
 
         
-    
+    <!-- Products Module -->
     <div class="module__products hidden section__container" id="products">
             <h1 class="section__heading">Products</h1>
-            <div class="module__products-container">
+            <div class="module__products--container">
                 <div class="module__products--wrapper">
                     <div class="products__heading--container">
                         <ul class="products__heading--items">
@@ -230,18 +201,15 @@
                             <li data-created="">Date Created</li>
                         </ul>
                     </div>
-                    <div class="product__list">
-                        <ul class="product__list--content">
-                            <li>1</li>
-                            <li>item1</li>
-                            <li>$333.66</li>
-                            <li>20/09/2022</li>
-                        </ul>
+                    <div class="products__list--container">
                     </div>
+                </div>
+                <div class="pagination__products">
                 </div>
          </div>
     </div>
 
+    <!-- Orders Modules -->
     <div class="module__orders"></div>
    </div>
   </body>
