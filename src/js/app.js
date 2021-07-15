@@ -95,7 +95,7 @@ const init = async function () {
     .join("");
   userWrapper.insertAdjacentHTML("beforeend", newUserList);
 
-  // Get most sold products data
+  ///////// Get most sold products data/////////////
   const topSoldProds = state.info.orderProduct
     .sort((a, b) => parseInt(b.qty) - parseInt(a.qty))
     .slice(0, 5)
@@ -110,6 +110,61 @@ const init = async function () {
     .map((item) => item.name);
 
   charts.renderTopSoldProdChart(topSoldProdNames, topSoldQtys);
+
+  /////// Get sales data across 12 months///////
+
+  // An array of order ids & order months
+  const ordersList = [...orders]
+    .map((order) => [order.id, new Date(order.created_at).getMonth()])
+    .sort((a, b) => a[0] - b[0]);
+
+  // An array of product order ids & order quantities
+  const amountPerOrderID = [...state.info.orderProduct]
+    .map((prod) => [prod.order_id, prod.qty])
+    .sort((a, b) => a[0] - b[0]);
+
+  // function to sum total quantity of orders with same ids
+  const getTotalPerID = function () {
+    const idValueSums = {};
+    for (let i = 0; i < amountPerOrderID.length; i++) {
+      if (!idValueSums.hasOwnProperty(amountPerOrderID[i][0])) {
+        idValueSums[amountPerOrderID[i][0]] = +amountPerOrderID[i][1];
+      } else {
+        idValueSums[amountPerOrderID[i][0]] += +amountPerOrderID[i][1];
+      }
+    }
+    return idValueSums;
+  };
+  const totalPerID = getTotalPerID();
+
+  // add total quanities quantities to [order, month] array
+  for (let i = 0; i < ordersList.length; i++) {
+    if (totalPerID.hasOwnProperty(ordersList[i][0])) {
+      ordersList[i].push(totalPerID[ordersList[i][0]]);
+    } else {
+      ordersList[i].push(0);
+    }
+  }
+
+  ordersList.sort((a, b) => a[1] - b[1]);
+
+  const getTotalPerMonth = function () {
+    const monthlyTotal = {};
+
+    for (let i = 0; i < ordersList.length; i++) {
+      if (!monthlyTotal.hasOwnProperty(String(ordersList[i][1]))) {
+        monthlyTotal[String(ordersList[i][1])] = +ordersList[i][2];
+      } else {
+        monthlyTotal[String(ordersList[i][1])] += +ordersList[i][2];
+      }
+    }
+    return Object.values(monthlyTotal);
+  };
+  const monthlyTotalSalesList = getTotalPerMonth();
+
+  charts.renderMonthlySalesChart(monthlyTotalSalesList);
+
+  console.log(ordersList);
 
   /////////////// Total Users & Products ///////////////////////
 
@@ -192,57 +247,3 @@ const init = async function () {
   });
 };
 init();
-
-//////////// 12 months sale data/////////////////////
-
-const ltx = document.getElementById("chartNew");
-const othrChart = new Chart(ltx, {
-  type: "line",
-  data: {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    datasets: [
-      {
-        data: [65, 59, 80, 81, 56, 55, 40, 32, 90, 60, 22, 95],
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-    responsive: true,
-    maintainAspectRatio: true,
-    plugins: {
-      title: {
-        display: true,
-        text: "Monthly Sales",
-        color: "#f3f3f3",
-        font: {
-          weight: "200",
-          family: "Roboto",
-        },
-      },
-      legend: {
-        display: false,
-      },
-    },
-  },
-});

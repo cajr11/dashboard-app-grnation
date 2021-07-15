@@ -1,9 +1,9 @@
 ////////////////// Charts ///////////////////////
 
+/// Top 5 most sold products
 export const renderTopSoldProdChart = function (itemNames, qtySold) {
-  /// Top 5 most sold products
-  const ctx = document.getElementById("topSales");
-  const myChart = new Chart(ctx, {
+  const barChart = document.getElementById("topSales");
+  const myChart = new Chart(barChart, {
     type: "bar",
     data: {
       labels: itemNames,
@@ -41,6 +41,61 @@ export const renderTopSoldProdChart = function (itemNames, qtySold) {
         title: {
           display: true,
           text: "Top 5 Most Sold Products",
+          color: "#f3f3f3",
+          font: {
+            weight: "200",
+            family: "Roboto",
+          },
+        },
+        legend: {
+          display: false,
+        },
+      },
+    },
+  });
+};
+
+/// Monthly sales chart
+export const renderMonthlySalesChart = function (salesData) {
+  const lineChart = document.getElementById("chartNew");
+  const monthlySaleData = new Chart(lineChart, {
+    type: "line",
+    data: {
+      labels: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
+      datasets: [
+        {
+          data: salesData,
+          fill: false,
+          borderColor: "rgb(75, 192, 192)",
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "Monthly Sales",
           color: "#f3f3f3",
           font: {
             weight: "200",
