@@ -4,13 +4,21 @@ import * as charts from "./views/chartView.js";
 import * as btnsPagination from "./views/paginationView.js";
 import { generateUsersMarkup } from "./views/usersView.js";
 import { generateProductMarkup } from "./views/productsView.js";
+import * as helpers from "./helpers.js";
 
-//////// Naviation ///////////////////
-
+//////// Declarations ///////////////////
 const navBar = document.querySelector(".side__nav--list");
 const navLink = document.querySelectorAll(".side__nav--item");
 const sections = document.querySelectorAll(".section__container");
+const orderWrapper = document.querySelector(".orders__wrapper");
+const productWrapper = document.querySelector(".products__wrapper");
+const userWrapper = document.querySelector(".users__wrapper");
+const moduleUserCont = document.querySelector(".user__list--container");
+const moduleProdCont = document.querySelector(".products__list--container");
+const paginationUsers = document.querySelector(".pagination__users");
+const paginationProducts = document.querySelector(".pagination__products");
 
+//////////// Navigation //////////////////////////
 navBar.addEventListener("click", function (event) {
   if (event.target.classList.contains("side__nav--item")) {
     navLink.forEach((nav) => nav.classList.remove("active"));
@@ -28,14 +36,7 @@ navBar.addEventListener("click", function (event) {
   }
 });
 
-////////// Read JSON Data //////////////
-const orderWrapper = document.querySelector(".orders__wrapper");
-const productWrapper = document.querySelector(".products__wrapper");
-const userWrapper = document.querySelector(".users__wrapper");
-const moduleUserCont = document.querySelector(".user__list--container");
-const moduleProdCont = document.querySelector(".products__list--container");
-const paginationUsers = document.querySelector(".pagination__users");
-const paginationProducts = document.querySelector(".pagination__products");
+////////// App State Object //////////////
 
 const state = {
   info: {},
@@ -55,33 +56,16 @@ const createInfoObject = function (data) {
   });
 };
 
-// Get results to be shown on each page
+/////// App ////////////////////
 
-const getResultsPerPage = function (page = state.loaded.page) {
-  state.loaded.page = page;
-
-  const start = (page - 1) * state.loaded.resultsPerPage;
-  const end = page * state.loaded.resultsPerPage;
-  return state.info.users.sort((a, b) => a.id - b.id).slice(start, end);
-};
-
-const getResultsPerPageProducts = function (page = state.loaded.page) {
-  state.loaded.page = page;
-
-  const start = (page - 1) * state.loaded.resultsPerPage;
-  const end = page * state.loaded.resultsPerPage;
-  return state.info.products.sort((a, b) => a.id - b.id).slice(start, end);
-};
-
-//// Retrieve the file and start manipulating it
-
-const getData = async function () {
+// fetch data, parse & render it
+const init = async function () {
   const res = await fetch("data.txt");
   const data = await res.json();
   createInfoObject(data);
   console.log(state.info);
 
-  // Sort latest orders to create mark up
+  // Sort latest orders then render mark up
   const orders = state.info.orders;
   const latestOrders = orders
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -91,7 +75,7 @@ const getData = async function () {
     .join("");
   orderWrapper.insertAdjacentHTML("beforeend", newList);
 
-  // Sort latest products to create mark up
+  // Sort latest products then render mark up
   const products = state.info.products;
   const latestProducts = products
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -101,7 +85,7 @@ const getData = async function () {
     .join("");
   productWrapper.insertAdjacentHTML("beforeend", newProdList);
 
-  // Sort latest users to create mark up
+  // Sort latest users then render mark up
   const usersInfo = state.info.users;
   const latestUsers = usersInfo
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -111,7 +95,7 @@ const getData = async function () {
     .join("");
   userWrapper.insertAdjacentHTML("beforeend", newUserList);
 
-  // Get most sold products
+  // Get most sold products data
   const topSoldProds = state.info.orderProduct
     .sort((a, b) => parseInt(b.qty) - parseInt(a.qty))
     .slice(0, 5)
@@ -127,12 +111,13 @@ const getData = async function () {
 
   charts.renderTopSoldProdChart(topSoldProdNames, topSoldQtys);
 
-  /////////////// Total Users ///////////////////////
+  /////////////// Total Users & Products ///////////////////////
 
   const initialAppState = () => {
     moduleUserCont.insertAdjacentHTML(
       "beforeend",
-      getResultsPerPage()
+      helpers
+        .getResultsPerPage(1, state)
         .map((user) => generateUsersMarkup(user))
         .join("")
     );
@@ -144,7 +129,8 @@ const getData = async function () {
 
     moduleProdCont.insertAdjacentHTML(
       "beforeend",
-      getResultsPerPageProducts()
+      helpers
+        .getResultsPerPageProducts(1, state)
         .map((product) => generateProductMarkup(product))
         .join("")
     );
@@ -156,6 +142,7 @@ const getData = async function () {
   };
   initialAppState();
 
+  // Event Listeners for Pagination buttons
   paginationUsers.addEventListener("click", function (e) {
     e.preventDefault();
     const btn = e.target.closest(".btn--inline");
@@ -173,7 +160,8 @@ const getData = async function () {
 
     moduleUserCont.insertAdjacentHTML(
       "beforeend",
-      getResultsPerPage(state.loaded.page)
+      helpers
+        .getResultsPerPage(state.loaded.page, state)
         .map((user) => generateUsersMarkup(user))
         .join("")
     );
@@ -196,13 +184,14 @@ const getData = async function () {
 
     moduleProdCont.insertAdjacentHTML(
       "beforeend",
-      getResultsPerPageProducts(state.loaded.page)
+      helpers
+        .getResultsPerPageProducts(state.loaded.page, state)
         .map((product) => generateProductMarkup(product))
         .join("")
     );
   });
 };
-getData();
+init();
 
 //////////// 12 months sale data/////////////////////
 
