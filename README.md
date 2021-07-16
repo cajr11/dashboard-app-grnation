@@ -1,4 +1,4 @@
-# dashboard-app-grnation
+# Dashboard App
 
 ![](dashboard.gif)
 
