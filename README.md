@@ -8,7 +8,8 @@ This is dashboard app that diplays data for a company in regards to their operat
 
 ### Live Site URL
 
-    You can access the live site at this address - https://dashboard-app-grnation.netlify.app/
+You can access the live site at this address -
+https://dashboard-app-grnation.netlify.app/
 
 ## Usage
 
