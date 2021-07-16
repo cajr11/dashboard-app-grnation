@@ -1,5 +1,6 @@
 import { RES_PER_PAGE } from "./config.js";
 import * as dashboard from "./views/dashboardView.js";
+import { generateOrdersMarkup } from "./views/ordersView.js";
 import * as charts from "./views/chartView.js";
 import * as btnsPagination from "./views/paginationView.js";
 import { generateUsersMarkup } from "./views/usersView.js";
@@ -15,8 +16,10 @@ const productWrapper = document.querySelector(".products__wrapper");
 const userWrapper = document.querySelector(".users__wrapper");
 const moduleUserCont = document.querySelector(".user__list--container");
 const moduleProdCont = document.querySelector(".products__list--container");
+const moduleOrdersCont = document.querySelector(".orders__list--container");
 const paginationUsers = document.querySelector(".pagination__users");
 const paginationProducts = document.querySelector(".pagination__products");
+const paginationOrders = document.querySelector(".pagination__orders");
 
 //////////// Navigation //////////////////////////
 navBar.addEventListener("click", function (event) {
@@ -164,86 +167,6 @@ const init = async function () {
 
   charts.renderMonthlySalesChart(monthlyTotalSalesList);
 
-  /////////////// Total Users & Products ///////////////////////
-
-  const initialAppState = () => {
-    moduleUserCont.insertAdjacentHTML(
-      "beforeend",
-      helpers
-        .getResultsPerPage(1, state)
-        .map((user) => generateUsersMarkup(user))
-        .join("")
-    );
-
-    paginationUsers.insertAdjacentHTML(
-      "afterbegin",
-      btnsPagination.generateButtonMarkup(state, state.info.users)
-    );
-
-    moduleProdCont.insertAdjacentHTML(
-      "beforeend",
-      helpers
-        .getResultsPerPageProducts(1, state)
-        .map((product) => generateProductMarkup(product))
-        .join("")
-    );
-
-    paginationProducts.insertAdjacentHTML(
-      "afterbegin",
-      btnsPagination.generateButtonMarkup(state, state.info.products)
-    );
-  };
-  initialAppState();
-
-  // Event Listeners for Pagination buttons
-  paginationUsers.addEventListener("click", function (e) {
-    e.preventDefault();
-    const btn = e.target.closest(".btn--inline");
-    if (!btn) return;
-
-    const goToPage = +btn.dataset.goto;
-    state.loaded.page = goToPage;
-    moduleUserCont.innerHTML = "";
-    paginationUsers.innerHTML = "";
-
-    paginationUsers.insertAdjacentHTML(
-      "afterbegin",
-      btnsPagination.generateButtonMarkup(state, state.info.users)
-    );
-
-    moduleUserCont.insertAdjacentHTML(
-      "beforeend",
-      helpers
-        .getResultsPerPage(state.loaded.page, state)
-        .map((user) => generateUsersMarkup(user))
-        .join("")
-    );
-  });
-
-  paginationProducts.addEventListener("click", function (e) {
-    e.preventDefault();
-    const btn = e.target.closest(".btn--inline");
-    if (!btn) return;
-
-    const goToPage = +btn.dataset.goto;
-    state.loaded.page = goToPage;
-    moduleProdCont.innerHTML = "";
-    paginationProducts.innerHTML = "";
-
-    paginationProducts.insertAdjacentHTML(
-      "afterbegin",
-      btnsPagination.generateButtonMarkup(state, state.info.Products)
-    );
-
-    moduleProdCont.insertAdjacentHTML(
-      "beforeend",
-      helpers
-        .getResultsPerPageProducts(state.loaded.page, state)
-        .map((product) => generateProductMarkup(product))
-        .join("")
-    );
-  });
-
   ////////////// Orders Section ///////////////////
 
   const getProdInfo = [...state.info.products].map((prod) => [
@@ -355,6 +278,127 @@ const init = async function () {
     return getTotalPerOrder.find((a) => a.userID === id);
   });
 
-  console.log(completeUserData);
+  state.fullData = completeUserData;
+
+  /////////////// Total Users, Products & Orders Rendering ///////////////////////
+
+  const initialStateUsersProds = () => {
+    // Users module initial
+    moduleUserCont.insertAdjacentHTML(
+      "beforeend",
+      helpers
+        .getResultsPerPage(1, state)
+        .map((user) => generateUsersMarkup(user))
+        .join("")
+    );
+
+    paginationUsers.insertAdjacentHTML(
+      "afterbegin",
+      btnsPagination.generateButtonMarkup(state, state.info.users)
+    );
+
+    //Products module initial
+    moduleProdCont.insertAdjacentHTML(
+      "beforeend",
+      helpers
+        .getResultsPerPageProducts(1, state)
+        .map((product) => generateProductMarkup(product))
+        .join("")
+    );
+
+    paginationProducts.insertAdjacentHTML(
+      "afterbegin",
+      btnsPagination.generateButtonMarkup(state, state.fullData)
+    );
+
+    // Orders module initial
+
+    moduleOrdersCont.insertAdjacentHTML(
+      "beforeend",
+      helpers
+        .getResultsPerPageOrders(1, state)
+        .map((order) => generateOrdersMarkup(order, order.productName))
+        .join("")
+    );
+
+    paginationOrders.insertAdjacentHTML(
+      "afterbegin",
+      btnsPagination.generateButtonMarkupOrders(state, state.fullData)
+    );
+  };
+  initialStateUsersProds();
+
+  // Event Listeners for Pagination buttons
+  paginationUsers.addEventListener("click", function (e) {
+    e.preventDefault();
+    const btn = e.target.closest(".btn--inline");
+    if (!btn) return;
+
+    const goToPage = +btn.dataset.goto;
+    state.loaded.page = goToPage;
+    moduleUserCont.innerHTML = "";
+    paginationUsers.innerHTML = "";
+
+    paginationUsers.insertAdjacentHTML(
+      "afterbegin",
+      btnsPagination.generateButtonMarkup(state, state.info.users)
+    );
+
+    moduleUserCont.insertAdjacentHTML(
+      "beforeend",
+      helpers
+        .getResultsPerPage(state.loaded.page, state)
+        .map((user) => generateUsersMarkup(user))
+        .join("")
+    );
+  });
+
+  paginationProducts.addEventListener("click", function (e) {
+    e.preventDefault();
+    const btn = e.target.closest(".btn--inline");
+    if (!btn) return;
+
+    const goToPage = +btn.dataset.goto;
+    state.loaded.page = goToPage;
+    moduleProdCont.innerHTML = "";
+    paginationProducts.innerHTML = "";
+
+    paginationProducts.insertAdjacentHTML(
+      "afterbegin",
+      btnsPagination.generateButtonMarkup(state, state.info.Products)
+    );
+
+    moduleProdCont.insertAdjacentHTML(
+      "beforeend",
+      helpers
+        .getResultsPerPageProducts(state.loaded.page, state)
+        .map((product) => generateProductMarkup(product))
+        .join("")
+    );
+  });
+
+  paginationOrders.addEventListener("click", function (e) {
+    e.preventDefault();
+    const btn = e.target.closest(".btn--inline");
+    if (!btn) return;
+
+    const goToPage = +btn.dataset.goto;
+    state.loaded.page = goToPage;
+    moduleOrdersCont.innerHTML = "";
+    paginationOrders.innerHTML = "";
+
+    paginationOrders.insertAdjacentHTML(
+      "afterbegin",
+      btnsPagination.generateButtonMarkupOrders(state, state.fullData)
+    );
+
+    moduleOrdersCont.insertAdjacentHTML(
+      "beforeend",
+      helpers
+        .getResultsPerPageOrders(state.loaded.page, state)
+        .map((order) => generateOrdersMarkup(order, order.productName))
+        .join("")
+    );
+  });
 };
 init();
