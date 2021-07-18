@@ -6,7 +6,7 @@ import * as btnsPagination from "./views/paginationView.js";
 import { generateUsersMarkup } from "./views/usersView.js";
 import { generateProductMarkup } from "./views/productsView.js";
 import * as helpers from "./helpers.js";
-// import dataUrl from "url:../../data.txt";
+import dataUrl from "url:../../data.txt";
 
 //////// Declarations ///////////////////
 const navBar = document.querySelector(".side__nav--list");
@@ -14,7 +14,6 @@ const navLink = document.querySelectorAll(".side__nav--item");
 const btnToggle = document.querySelector(".btn__toggle");
 const btnContainer = document.querySelector(".btn__mode");
 const sections = document.querySelectorAll(".section__container");
-const secHeadings = document.querySelectorAll(".section__heading");
 const orderWrapper = document.querySelector(".orders__wrapper");
 const productWrapper = document.querySelector(".products__wrapper");
 const userWrapper = document.querySelector(".users__wrapper");
@@ -86,7 +85,7 @@ const createInfoObject = function (data) {
 // fetch data, parse & render it
 const init = async function () {
   try {
-    const res = await fetch("data.txt");
+    const res = await fetch(dataUrl);
     const data = await res.json();
     createInfoObject(data);
     console.log(state.info);
