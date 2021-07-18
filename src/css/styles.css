@@ -7,6 +7,9 @@
   --gradient: #252946;
   --wrappers: #23232e;
   --content-text: #f3f3f3;
+  --active-toggle: #6edc5f;
+  --inactive-toggle: #dddddd;
+  --toggle-button: #fff;
 }
 
 body {
@@ -15,6 +18,7 @@ body {
   color: #84b8b1;
   margin: 0;
   display: flex;
+  transition: background-color 1s;
 }
 
 /*-------------Side Bar--------------*/
@@ -31,6 +35,7 @@ body {
   width: 20vw;
   overflow: hidden;
   z-index: 100;
+  background-color: var(--main);
 }
 
 .side__nav--list {
@@ -75,10 +80,43 @@ body {
   pointer-events: none;
 }
 
+/*---------Toggle Button---------------*/
+.button__container {
+  height: 10vh;
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.btn__mode {
+  width: 4.2rem;
+  height: 2rem;
+  background-color: var(--inactive-toggle);
+  /* background-color: $active; */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  transition: background-color 1s;
+}
+
+.btn__mode button {
+  height: 1.6rem;
+  width: 1.7rem;
+  border-radius: 50%;
+  margin: 3px;
+  border: none;
+  background-color: var(--toggle-button);
+  /* transform: translateX(125%); */
+  transition: transform 0.8s;
+  z-index: 100;
+}
+
 /*---------Dashboard---------------*/
 
 .section__heading {
   margin-bottom: 0;
+  color: var(--icons);
 }
 
 .module__dashboard,
@@ -93,9 +131,10 @@ body {
 }
 
 .module__heading {
-  font-weight: 200;
+  font-weight: 300;
   text-align: justify;
   padding-left: 1rem;
+  color: var(--icons);
 }
 
 .section__data {
