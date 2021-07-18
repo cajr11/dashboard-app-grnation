@@ -2,7 +2,7 @@
   "name": "dashboard-app-grnation",
   "version": "1.0.0",
   "description": "Dashboard app",
-  "main": "index.html",
+  "default": "index.html",
   "dependencies": {
     "bootstrap-icons": "^1.5.0",
     "parcel": "^2.0.0-beta.2"
