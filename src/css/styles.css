@@ -80,6 +80,11 @@ body {
   pointer-events: none;
 }
 
+.side__nav--item a > svg {
+  width: 30px;
+  height: 30px;
+}
+
 /*---------Toggle Button---------------*/
 .button__container {
   height: 10vh;
