@@ -80,7 +80,7 @@ body {
   pointer-events: none;
 }
 
-.side__nav--item a > svg {
+.bi {
   width: 30px;
   height: 30px;
 }
