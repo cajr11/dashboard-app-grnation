@@ -1,11 +1,11 @@
-import { RES_PER_PAGE } from "./config.js";
 import * as dashboard from "./views/dashboardView.js";
-import { generateOrdersMarkup } from "./views/ordersView.js";
 import * as charts from "./views/chartView.js";
 import * as btnsPagination from "./views/paginationView.js";
+import * as helpers from "./helpers.js";
+import { RES_PER_PAGE } from "./config.js";
+import { generateOrdersMarkup } from "./views/ordersView.js";
 import { generateUsersMarkup } from "./views/usersView.js";
 import { generateProductMarkup } from "./views/productsView.js";
-import * as helpers from "./helpers.js";
 import dataUrl from "url:../../data.txt";
 
 //////// Declarations ///////////////////
@@ -45,16 +45,15 @@ navBar.addEventListener("click", function (event) {
 
 ////////////// Day/Night Mode toggle button //////////////
 
-btnToggle.addEventListener("click", function (event) {
+btnContainer.addEventListener("click", function (event) {
   if (event.target.dataset.status === "off") {
     event.target.dataset.status = "on";
-    event.target.style.transform = "translateX(125%)";
+    btnToggle.style.transform = "translateX(125%)";
     btnContainer.style.backgroundColor = "#6EDC5F";
-    // secHeadings.forEach((hdr) => (hdr.style.color = "#84b8b1"));
     document.body.style.backgroundColor = "#ddd";
   } else if (event.target.dataset.status === "on") {
     event.target.dataset.status = "off";
-    event.target.style.transform = "";
+    btnToggle.style.transform = "";
     btnContainer.style.backgroundColor = "#DDDDDD";
     document.body.style.backgroundColor = "#171821";
   }
@@ -88,7 +87,6 @@ const init = async function () {
     const res = await fetch(dataUrl);
     const data = await res.json();
     createInfoObject(data);
-    console.log(state.info);
 
     // Sort latest orders then render mark up
     const orders = state.info.orders;
