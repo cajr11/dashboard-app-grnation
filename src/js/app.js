@@ -39,7 +39,7 @@ navBar.addEventListener("click", function (event) {
     document
       .querySelector(event.target.dataset.link)
       .classList.remove("hidden");
-    document.body.scrollIntoView({ behavior: "smooth" });
+    document.body.scrollIntoView();
   }
 });
 
