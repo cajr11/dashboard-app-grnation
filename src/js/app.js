@@ -1,8 +1,8 @@
+import { RES_PER_PAGE } from "./config.js";
 import * as dashboard from "./views/dashboardView.js";
 import * as charts from "./views/chartView.js";
 import * as btnsPagination from "./views/paginationView.js";
 import * as helpers from "./helpers.js";
-import { RES_PER_PAGE } from "./config.js";
 import { generateOrdersMarkup } from "./views/ordersView.js";
 import { generateUsersMarkup } from "./views/usersView.js";
 import { generateProductMarkup } from "./views/productsView.js";
@@ -260,7 +260,7 @@ const init = async function () {
     const getTotalPerOrder = [...completeUserOrder].map((data) => {
       const newItem = {
         ...data,
-        total: +data.productPrice.slice(1) * +data.qty,
+        total: +data.productPrice.slice(1) * +data.qty, // remove dollar sign
       };
       return newItem;
     });
