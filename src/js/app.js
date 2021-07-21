@@ -79,7 +79,7 @@ const createInfoObject = function (data) {
   });
 };
 
-/////// App ////////////////////
+/////// App  ////////////////////
 
 // fetch data, parse & render it
 const init = async function () {
